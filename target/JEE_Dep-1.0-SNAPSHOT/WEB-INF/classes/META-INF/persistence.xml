@@ -14,9 +14,10 @@
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.user" value="avnadmin"/>
             <property name="jakarta.persistence.jdbc.password" value="AVNS_0PuhOO21XYtuxv9oYvi"/>
-            <property name="eclipselink.ddl-generation" value="none"/>
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
             <property name="eclipselink.logging.level" value="FINE"/>
 
         </properties>
     </persistence-unit>
 </persistence>
+
