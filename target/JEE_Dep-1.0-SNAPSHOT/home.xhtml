@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head>
+    <h:outputStylesheet library="webjars" name="bootstrap/5.3.2/css/bootstrap.min.css"/>
+    <h:outputScript library="webjars" name="bootstrap/5.3.2/js/bootstrap.min.js"/>
+</h:head>
+<f:view>
+    <h:outputLabel style="display: block; text-align: center; color: black; font-size: 24px; margin: 30px">Employee
+        List</h:outputLabel>
+
+
+    <h:dataTable value="${Employe.employes}" var="employe" border="1" styleClass="table table-primary"
+                 headerClass="bg-warning text-white fs-5">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+
+            #{employe.id}
+        </h:column> <h:column>
+        <f:facet name="header">Name</f:facet>
+
+        #{employe.name}
+    </h:column>
+        <h:column>
+            <f:facet name="header">Email</f:facet>
+
+            #{employe.email}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Skill</f:facet>
+            <ui:repeat value="#{employe.skills}" var="skill">
+                <h:outputText value="#{skill.name}"/>
+                <br/>
+            </ui:repeat>
+        </h:column>
+        <h:column >
+            <f:facet name="header">Project</f:facet>
+
+            <h:panelGroup rendered="#{ not employe.EmptyProjects()}">
+
+                <ui:repeat value="#{employe.employeesProject}" var="EP">
+                    <h:outputText value="#{EP.project.name}(#{EP.implication})"/>
+                    <br/>
+                </ui:repeat>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{employe.EmptyProjects()}">
+
+                <h:outputText value="Aucun"/>
+            </h:panelGroup>
+
+
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Action</f:facet>
+
+            <h:form>
+
+                <h:commandButton value="Supprimer" styleClass="bg-danger" action="#{Employe.delete(employe.id)}"/>
+            </h:form>
+        </h:column>
+    </h:dataTable>
+    <div style="display: flex; justify-content: space-between;">
+        <h:form>
+            <h:commandLink value="Add Employee" action="addEmployee.xhtml" styleClass="btn btn-success"/>
+        </h:form>
+        <h:form>
+            <h:commandLink value="Affecter Employee" action="affectation.xhtml" styleClass="btn btn-primary"/>
+        </h:form>
+    </div>
+
+</f:view>
+
+</html>

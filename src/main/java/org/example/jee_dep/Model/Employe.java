@@ -5,17 +5,18 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 
 @Entity
+@Table(name = "employe")
 public class Employe {
     String name;
     String email;
 
     @ManyToMany
-    @JoinTable(name = "Employees_Skills",
+    @JoinTable(name = "employees_skills",
             joinColumns = @JoinColumn(name = "idEmployee "),
             inverseJoinColumns = @JoinColumn(name = "idSkill"))
     ArrayList<Skill> skills;
     @ManyToMany
-    @JoinTable(name = "Employees_Project",
+    @JoinTable(name = "employees_project",
             joinColumns = @JoinColumn(name = "idEmployee"),
             inverseJoinColumns = @JoinColumn(name = "idProject"))
     ArrayList<Project> projects;
